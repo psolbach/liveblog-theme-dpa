@@ -36,6 +36,16 @@ var sendPageview = {
     }
   },
 
+  _sendLB: function() {
+    var xhr = new XMLHttpRequest();
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.open('GET', '/api/analytics/hit');
+    xhr.send({
+      "context_url": window.document.referrer,
+      "blog_id": window.LB.blog._id
+    });
+  },
+
   _insertScript: function(src, cb) {
     var script = document.createElement('script'); script.src = src;
     document.getElementsByTagName("body")[0].appendChild(script);
@@ -104,6 +114,12 @@ sendPageview._providers = {
     requiredData: ['gaProperty'],
     scriptURL: "https://www.google-analytics.com/analytics.js",
     object: window.hasOwnProperty("ga") ? window.ga : null
+  },
+
+  liveblog: {
+    send: sendPageview._sendLB,
+    requiredData: [],
+    object: true
   }
 };
 
