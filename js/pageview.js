@@ -21,7 +21,7 @@ var sendPageview = {
     window.iom.c(iam_data, 1); // where's the .h? ahahaha
   },
 
-  _sendGA: function() {
+  _sendGoogleAnalytics: function() {
     if (window.ga.length > 0) {
       window.ga('create', window._iframeDataset.gaProperty, 'auto');
       window.ga('set', 'anonymizeIp', true);
@@ -36,10 +36,10 @@ var sendPageview = {
     }
   },
 
-  _sendLB: function() {
+  _sendLiveblog: function() {
     var xhr = new XMLHttpRequest();
     xhr.setRequestHeader("Content-type", "application/json");
-    xhr.open('GET', '/api/analytics/hit');
+    xhr.open('POST', '/api/analytics/hit');
     xhr.send({
       "context_url": window.document.referrer,
       "blog_id": window.LB.blog._id
@@ -110,14 +110,14 @@ sendPageview._providers = {
   },
 
   ga: {
-    send: sendPageview._sendGA,
+    send: sendPageview._sendGoogleAnalytics,
     requiredData: ['gaProperty'],
     scriptURL: "https://www.google-analytics.com/analytics.js",
     object: window.hasOwnProperty("ga") ? window.ga : null
   },
 
   liveblog: {
-    send: sendPageview._sendLB,
+    send: sendPageview._sendLiveblog,
     requiredData: [],
     object: true
   }
