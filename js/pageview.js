@@ -37,11 +37,14 @@ var sendPageview = {
   },
 
   _sendLiveblog: function() {
-    var xhr = new XMLHttpRequest();
+    var xhr = new XMLHttpRequest()
+      , url = document.createElement("a");
+    
+    url.href = window.document.referrer;
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.open('POST', '/api/analytics/hit');
     xhr.send({
-      "context_url": window.document.referrer,
+      "context_url": url.hostname,
       "blog_id": window.LB.blog._id
     });
   },
