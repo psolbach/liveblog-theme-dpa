@@ -37,7 +37,16 @@ module.exports = {
   },
 
   sendHeight: function(h) {
-    parent.postMessage({type: 'iframe', updatedHeight: h+300}, "*");
+    parent.postMessage({ // theme's own dynamic height adjustment
+      type: 'iframe',
+      updatedHeight: h+300
+    }, "*");
+
+    parent.postMessage({ // AMP dynamic height adjustment
+      sentinel: 'amp',
+      type: 'embed-size',
+      height: document.body.scrollHeight
+    }, '*');
   },
 
   onElemHeightChange: onElementHeightChange

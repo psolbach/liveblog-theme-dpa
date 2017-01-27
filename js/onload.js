@@ -35,6 +35,8 @@ module.exports = function($rootScope, $window, $timeout, resizeIframe, config) {
     }
   }, false);
 
+  iframeResize.onElemHeightChange(timeline_body, iframeResize.sendHeight); // safe to do it unconditionally?
+
   $window.onload = function() {
     $rootScope._log.debug("ng-lb", "started");
     pageview.init(); // Initialize 'pageview/analytics'
