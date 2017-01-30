@@ -16,15 +16,15 @@ function resizeIframeHeight(h) { // T
 };
 
 function onElementHeightChange(elem, callback) {
-  var lastHeight = elem.clientHeight, newHeight; // persist over calls
+  // Periodically check and act if timeline height has changed
+  var lastHeight = elem.clientHeight // persist over calls
+    , newHeight;
 
-  (function run() {
+  setInterval(function() {
     newHeight = elem.clientHeight;
     if (lastHeight != newHeight) callback(newHeight);
     lastHeight = newHeight;
-    if (elem.onElemHeightChangeTimer) clearTimeout(elem.onElemHeightChangeTimer);
-    elem.onElemHeightChangeTimer = setTimeout(run, 800);
-  })();
+  }, 800);
 };
 
 module.exports = {
@@ -33,14 +33,16 @@ module.exports = {
   },
 
   adjustBody: function() {
-    if (!!window.FRAME_HEIGHT && parseInt(window.FRAME_HEIGHT)) resizeIframeHeight(window.FRAME_HEIGHT);
+    if (!!window.FRAME_HEIGHT && parseInt(window.FRAME_HEIGHT)) {
+      resizeIframeHeight(window.FRAME_HEIGHT);
+    }
   },
 
   sendHeight: function(h) {
     parent.postMessage({ // theme's own dynamic height adjustment
       type: 'iframe',
       updatedHeight: h+300
-    }, "*");
+    }, '*');
 
     parent.postMessage({ // AMP dynamic height adjustment
       sentinel: 'amp',
