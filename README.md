@@ -9,7 +9,7 @@ Just issue a `npm i` followed by `gulp`.
 Assets are then bundled into single .js and .css files, an index.html is generated
 for debugging purposes by injecting hardcoded settings around `template.html` -- emulating
 what would normally be handled by Liveblog Server.
-Serve via `python -m SimpleHTTPServer` or equivalent
+Serve via `python -m SimpleHTTPServer` or equivalent.
 
 ## Build Notes
 Use `make` or alternatively zip this directory without the `node_modules`
