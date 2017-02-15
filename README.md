@@ -1,8 +1,8 @@
 # dpa Liveblog Theme
-Derived from Sourcefabric Angular Theme, merges all embed dependencies
+Derived from Sourcefabric Angular theme, merges all embed dependencies
 into one. This way we gain full control over the build process and
 allow debugging the theme in isolation without the Liveblog Environment.
-Downside is we can't just merge upstream commits.
+Downside is we can't just merge upstream commits. Other changes e.g. convert to Browserify, throw out JQuery and i18n data, modular lodash require.
 
 ## Development
 Just issue a `npm i` followed by `gulp`.
