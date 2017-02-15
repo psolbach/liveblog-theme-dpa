@@ -27,4 +27,4 @@ github.com/liveblog/lb-theme-angular@1.4.12
 This is a hard fork of the Liveblog 3 angular, classic themes => https://github.com/liveblog   
 Liveblog 3 is licensed under AGPL v3, as is this theme.
    
-© 2016-2017 dpa-infocom
+*© 2016-2017 dpa-infocom*
