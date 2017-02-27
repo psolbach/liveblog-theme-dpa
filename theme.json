@@ -1,7 +1,7 @@
 {
     "label": "dpa Liveblog Theme",
     "name": "liveblog-theme-dpa",
-    "version": "0.11.3",
+    "version": "0.11.5",
     "author": "Paul Solbach <psolbach@dpa-newslab.com>",
     "repository": {
         "type" : "git",
@@ -119,6 +119,13 @@
             "type": "checkbox",
             "default": false,
             "help": "If the users see the highlight button in embed"
+        },
+        {
+            "name": "blockSearchEngines",
+            "label": "Block search engines",
+            "type": "checkbox",
+            "default": true,
+            "help": "Block search engines from indexing my blogs"
         }
     ]
 }
