@@ -10,6 +10,7 @@
 var angular = require("angular")
   , iframeResize = require('./iframe')
   , pageview = require('./pageview')
+  , metrics = require('./metrics')
   , polyfills = require("./polyfills")
   , _ = require('./lodash-custom')
   , _log = require("./log");
@@ -37,7 +38,8 @@ module.exports = function($rootScope, $window, $timeout, resizeIframe, config) {
 
   $window.onload = function() {
     $rootScope._log.debug("ng-lb", "started");
-    pageview.init(); // Initialize 'pageview/analytics'
+    pageview.init(); // Initialize pageview analytics handler
+    metrics.init(); // Initialize metrics trigger handler
     
     $timeout(function() { // Initiate scrollable iframe
       if (!config.parent_resize) iframeResize.adjustBody()

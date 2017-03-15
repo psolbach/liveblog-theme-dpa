@@ -78,6 +78,7 @@ function TimelineCtrl(
         orderBy: function(order_by) {
             vm.loading = true;
             vm.finished = false;
+            vm.triggerMetric("orderBy");
             vm.pagesManager.changeOrder(order_by).then(function() {
                 vm.loading = false;
             });
@@ -151,6 +152,12 @@ function TimelineCtrl(
         triggerPageview: function() {
             // vanilla events over angular events, so we can reuse pageview.js
             var event = new CustomEvent("sendpageview"); 
+            window.dispatchEvent(event);
+        },
+
+        triggerMetric: function(metric) {
+            if (["orderBy"].indexOf(metric) <= -1) return; // not a valid metric
+            var event = new CustomEvent("sendmetric", {"detail": {"action": metric}});
             window.dispatchEvent(event);
         },
 
